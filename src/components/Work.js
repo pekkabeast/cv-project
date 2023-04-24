@@ -10,10 +10,10 @@ class Work extends Component {
     this.state = {
       jobList: [],
       job: {
-        company: "Top Company",
-        title: "Founder & CEO",
-        dates: "Oct. 2017 - Present",
-        location: "Denver, CO",
+        company: "",
+        title: "",
+        dates: "",
+        location: "",
         responsibilities: [],
         id: uniqid(),
       },
@@ -27,9 +27,54 @@ class Work extends Component {
   }
 
   addJob() {
-    this.setState((state) => ({
-      jobList: [...state.jobList, state.job],
-    }));
+    this.setState(
+      {
+        responsibility: {
+          text: "Core Responsibility #1",
+          id: this.state.responsibility.id,
+        },
+      },
+      () => {
+        this.setState(
+          {
+            job: {
+              company: "Top Company",
+              title: "Founder & CEO",
+              dates: "Oct. 2017 - Present",
+              location: "Denver, CO",
+              responsibilities: [
+                ...this.state.job.responsibilities,
+                this.state.responsibility,
+              ],
+              id: this.state.job.id,
+            },
+          },
+          () => {
+            this.setState(
+              {
+                jobList: [...this.state.jobList, this.state.job],
+              },
+              () => {
+                this.setState({
+                  job: {
+                    company: "",
+                    title: "",
+                    dates: "",
+                    location: "",
+                    responsibilities: [],
+                    id: uniqid(),
+                  },
+                  responsibility: {
+                    text: "",
+                    id: uniqid(),
+                  },
+                });
+              }
+            );
+          }
+        );
+      }
+    );
   }
 
   addResponsibility() {}

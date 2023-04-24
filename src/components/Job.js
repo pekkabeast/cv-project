@@ -15,7 +15,16 @@ class Job extends Component {
 
     return (
       <div className="job" key={job.id}>
-        <div className="company">{job.company}</div>
+        {this.state.editing ? (
+          <input
+            type="text"
+            value={this.props.company}
+            className="job-edit"
+            id="companyInput"
+          />
+        ) : (
+          <div className="company">{job.company}</div>
+        )}
         <div className="title">{job.title}</div>
         <div className="dates">{job.dates}</div>
         <div className="location">{job.location}</div>
