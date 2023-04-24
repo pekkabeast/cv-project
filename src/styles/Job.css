@@ -1,0 +1,59 @@
+.company {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.title {
+  font-style: italic;
+}
+
+.dates {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.job {
+  position: relative;
+}
+
+.location {
+  position: absolute;
+  top: 1.5rem;
+  right: 0;
+  font-style: italic;
+}
+
+.responsibilities {
+  padding-left: 1rem;
+}
+
+.responsibilities li {
+  list-style-type: square;
+}
+
+.responsibilities span {
+  position: relative;
+  left: 1.5rem;
+}
+
+.job:hover .editJob {
+  opacity: 1;
+}
+
+.editJob {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  right: -8rem;
+  background: lightgray;
+  padding: 5px;
+  border-radius: 0.5rem;
+  transition: 0.2s;
+}
+
+.editJob:hover {
+  outline: 1px solid black;
+  cursor: pointer;
+  transition: 0.2s;
+}

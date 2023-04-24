@@ -1,0 +1,8 @@
+.app {
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.app > div:last-child {
+  align-self: center;
+}

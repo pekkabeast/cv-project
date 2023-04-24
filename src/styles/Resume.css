@@ -1,0 +1,9 @@
+.resume {
+  margin: 2rem;
+  outline: 2px solid gray;
+  padding: 48px;
+  width: 768px;
+  height: 1056px;
+  font-size: 16px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
