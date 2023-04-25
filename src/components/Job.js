@@ -8,39 +8,102 @@ class Job extends Component {
     this.state = {
       editing: false,
     };
+
+    this.handleEditJob = this.handleEditJob.bind(this);
+    this.handleSaveJob = this.handleSaveJob.bind(this);
+  }
+
+  handleEditJob() {
+    this.setState({
+      editing: true,
+    });
+  }
+
+  handleSaveJob() {
+    this.setState({
+      editing: false,
+    });
   }
 
   render() {
     const { job } = this.props;
 
     return (
-      <div className="job" key={job.id}>
+      <div className="job" key={job.id} id={job.id}>
         {this.state.editing ? (
           <input
             type="text"
-            value={this.props.company}
+            value={job.company}
             className="job-edit"
             id="companyInput"
           />
         ) : (
           <div className="company">{job.company}</div>
         )}
-        <div className="title">{job.title}</div>
-        <div className="dates">{job.dates}</div>
-        <div className="location">{job.location}</div>
+        {this.state.editing ? (
+          <input
+            type="text"
+            value={job.title}
+            className="job-edit"
+            id="titleInput"
+          />
+        ) : (
+          <div className="title">{job.title}</div>
+        )}
+        {this.state.editing ? (
+          <input
+            type="text"
+            value={job.dates}
+            className="job-edit"
+            id="datesInput"
+          />
+        ) : (
+          <div className="dates">{job.dates}</div>
+        )}
+        {this.state.editing ? (
+          <input
+            type="text"
+            value={job.location}
+            className="job-edit"
+            id="locationInput"
+          />
+        ) : (
+          <div className="location">{job.location}</div>
+        )}
         <ul className="responsibilities">
           {job.responsibilities.map((responsibility) => {
-            return (
-              <li className="responsibility" key={responsibility.id}>
+            return this.state.editing ? (
+              <input
+                type="text"
+                value={responsibility.text}
+                className="job-edit"
+                key={responsibility.id}
+                id={responsibility.id + "input"}
+              />
+            ) : (
+              <li
+                className="responsibility"
+                key={responsibility.id}
+                id={responsibility.id}
+              >
                 <span> {responsibility.text}</span>
               </li>
             );
           })}
         </ul>
         {this.state.editing ? (
-          <div className="saveJob">Save changes</div>
+          <div className="saveJob" onClick={this.handleSaveJob}>
+            Save changes
+          </div>
         ) : (
-          <div className="editJob">Edit Job</div>
+          <div className="editJob" onClick={this.handleEditJob}>
+            Edit Job
+          </div>
+        )}
+        {this.state.editing ? (
+          <div className="saveResponsibility">Save Responsibility</div>
+        ) : (
+          <div className="addResponsibility">Add Responsibility</div>
         )}
       </div>
     );

@@ -85,7 +85,7 @@ class Work extends Component {
         <h2 className="work-header">Work Experience</h2>
         <div className="job-list">
           {this.state.jobList.map((job) => {
-            return <Job job={job} />;
+            return <Job job={job} key={job.id} />;
           })}
 
           {this.state.jobList.length < 4 && (
