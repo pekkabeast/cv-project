@@ -36,6 +36,7 @@ class Job extends Component {
             value={job.company}
             className="job-edit"
             id="companyInput"
+            onChange={this.props.editJob}
           />
         ) : (
           <div className="company">{job.company}</div>
@@ -46,6 +47,7 @@ class Job extends Component {
             value={job.title}
             className="job-edit"
             id="titleInput"
+            onChange={this.props.editJob}
           />
         ) : (
           <div className="title">{job.title}</div>
@@ -56,6 +58,7 @@ class Job extends Component {
             value={job.dates}
             className="job-edit"
             id="datesInput"
+            onChange={this.props.editJob}
           />
         ) : (
           <div className="dates">{job.dates}</div>
@@ -66,6 +69,7 @@ class Job extends Component {
             value={job.location}
             className="job-edit"
             id="locationInput"
+            onChange={this.props.editJob}
           />
         ) : (
           <div className="location">{job.location}</div>
@@ -76,9 +80,10 @@ class Job extends Component {
               <input
                 type="text"
                 value={responsibility.text}
-                className="job-edit"
+                className="job-edit responsibility-edit"
                 key={responsibility.id}
-                id={responsibility.id + "input"}
+                id={responsibility.id}
+                onChange={this.props.editJob}
               />
             ) : (
               <li
@@ -100,10 +105,14 @@ class Job extends Component {
             Edit Job
           </div>
         )}
-        {this.state.editing ? (
-          <div className="saveResponsibility">Save Responsibility</div>
-        ) : (
-          <div className="addResponsibility">Add Responsibility</div>
+
+        {!this.state.editing && job.responsibilities.length < 4 && (
+          <div
+            className="addResponsibility"
+            onClick={this.props.addResponsibility}
+          >
+            Add Responsibility
+          </div>
         )}
       </div>
     );
