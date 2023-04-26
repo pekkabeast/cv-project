@@ -85,7 +85,7 @@ class Contact extends Component {
                 id="cityInput"
                 onChange={this.handleInputChange}
                 title="Enter your city (max 30 chars)"
-                maxlength="30"
+                maxLength="30"
               />
               <select
                 name="province"

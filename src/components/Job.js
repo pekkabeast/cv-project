@@ -1,5 +1,7 @@
 import react, { Component } from "react";
 import "../styles/Job.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faX } from "@fortawesome/free-solid-svg-icons";
 
 class Job extends Component {
   constructor(props) {
@@ -76,23 +78,44 @@ class Job extends Component {
         )}
         <ul className="responsibilities">
           {job.responsibilities.map((responsibility) => {
-            return this.state.editing ? (
-              <input
-                type="text"
-                value={responsibility.text}
-                className="job-edit responsibility-edit"
+            return (
+              <div
                 key={responsibility.id}
-                id={responsibility.id}
-                onChange={this.props.editJob}
-              />
-            ) : (
-              <li
+                data-id={responsibility.id}
                 className="responsibility"
-                key={responsibility.id}
-                id={responsibility.id}
               >
-                <span> {responsibility.text}</span>
-              </li>
+                {this.state.editing ? (
+                  <input
+                    type="text"
+                    value={responsibility.text}
+                    className="job-edit responsibility-edit"
+                    key={responsibility.id}
+                    id={responsibility.id}
+                    onChange={this.props.editJob}
+                  />
+                ) : (
+                  <li
+                    className="responsibility"
+                    key={responsibility.id}
+                    id={responsibility.id}
+                  >
+                    <span> {responsibility.text}</span>
+                  </li>
+                )}
+                {this.state.editing ? (
+                  <FontAwesomeIcon
+                    icon={faX}
+                    className="delete-X deleteResponsibility delete-X-input"
+                    onClick={this.props.deleteResponsibility}
+                  />
+                ) : (
+                  <FontAwesomeIcon
+                    icon={faX}
+                    className="delete-X deleteResponsibility"
+                    onClick={this.props.deleteResponsibility}
+                  />
+                )}
+              </div>
             );
           })}
         </ul>
@@ -114,6 +137,10 @@ class Job extends Component {
             Add Responsibility
           </div>
         )}
+
+        <div className="deleteJob" onClick={this.props.deleteJob}>
+          Delete Job
+        </div>
       </div>
     );
   }

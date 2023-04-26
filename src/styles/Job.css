@@ -59,17 +59,28 @@
   left: 1.5rem;
 }
 
+.responsibility {
+  position: relative;
+}
+
+.responsibility:hover .deleteResponsibility {
+  opacity: 1;
+}
+
 .job:hover .editJob,
 .job:hover .addResponsibility,
 .job:hover .saveJob,
-.job:hover .saveResponsibility {
+.job:hover .saveResponsibility,
+.job:hover .deleteJob {
   opacity: 1;
 }
 
 .editJob,
 .addResponsibility,
 .saveJob,
-.saveResponsibility {
+.saveResponsibility,
+.deleteJob,
+.deleteResponsibility {
   opacity: 0;
   position: absolute;
   top: 0;
@@ -83,7 +94,9 @@
 .editJob:hover,
 .addResponsibility:hover,
 .saveJob:hover,
-.saveResponsibility:hover {
+.saveResponsibility:hover,
+.deleteJob:hover,
+.deleteResponsibility:hover {
   outline: 1px solid black;
   cursor: pointer;
   transition: 0.2s;
@@ -100,4 +113,22 @@
 }
 .saveJob {
   right: -11.35rem;
+}
+
+.deleteJob {
+  background-color: lightcoral;
+  width: 6rem;
+  left: -10rem;
+}
+
+.deleteResponsibility {
+  top: 0;
+  left: 0rem;
+  background-color: lightcoral;
+  width: 10px;
+  height: 10px;
+}
+
+.delete-X-input {
+  left: -3rem;
 }

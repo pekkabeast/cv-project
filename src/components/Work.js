@@ -26,6 +26,8 @@ class Work extends Component {
     this.addJob = this.addJob.bind(this);
     this.addResponsibility = this.addResponsibility.bind(this);
     this.editJob = this.editJob.bind(this);
+    this.deleteJob = this.deleteJob.bind(this);
+    this.deleteResponsibility = this.deleteResponsibility.bind(this);
   }
 
   addJob() {
@@ -115,7 +117,7 @@ class Work extends Component {
 
   editJob(event) {
     let parentElement = event.target.parentElement;
-    if (parentElement.className !== "job") {
+    while (parentElement.className !== "job") {
       parentElement = parentElement.parentElement;
     }
     let jobId = parentElement.id;
@@ -145,6 +147,42 @@ class Work extends Component {
     });
   }
 
+  deleteJob(event) {
+    this.setState({
+      jobList: this.state.jobList.filter(
+        (job) => job.id !== event.target.parentElement.id
+      ),
+    });
+  }
+
+  deleteResponsibility(event) {
+    let parentElement = event.target.parentElement;
+    while (parentElement.className !== "responsibility") {
+      parentElement = parentElement.parentElement;
+    }
+    let responsibilityId = parentElement.getAttribute("data-id");
+    while (parentElement.className !== "job") {
+      parentElement = parentElement.parentElement;
+    }
+    this.setState(
+      {
+        jobList: this.state.jobList.map((job) => {
+          if (job.id === parentElement.id) {
+            console.log(responsibilityId);
+            job.responsibilities.filter(
+              (responsibility) => responsibility.id !== responsibilityId
+            );
+            console.log(job.responsibilities[0].id);
+          }
+          return job;
+        }),
+      },
+      () => {
+        console.log(this.state.jobList);
+      }
+    );
+  }
+
   render() {
     return (
       <div className="work-experience">
@@ -157,6 +195,8 @@ class Work extends Component {
                 key={job.id}
                 addResponsibility={this.addResponsibility}
                 editJob={this.editJob}
+                deleteJob={this.deleteJob}
+                deleteResponsibility={this.deleteResponsibility}
               />
             );
           })}
