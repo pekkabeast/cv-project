@@ -164,23 +164,16 @@ class Work extends Component {
     while (parentElement.className !== "job") {
       parentElement = parentElement.parentElement;
     }
-    this.setState(
-      {
-        jobList: this.state.jobList.map((job) => {
-          if (job.id === parentElement.id) {
-            console.log(responsibilityId);
-            job.responsibilities.filter(
-              (responsibility) => responsibility.id !== responsibilityId
-            );
-            console.log(job.responsibilities[0].id);
-          }
-          return job;
-        }),
-      },
-      () => {
-        console.log(this.state.jobList);
-      }
-    );
+    this.setState({
+      jobList: this.state.jobList.map((job) => {
+        if (job.id === parentElement.id) {
+          job.responsibilities = job.responsibilities.filter(
+            (responsibility) => responsibility.id !== responsibilityId
+          );
+        }
+        return job;
+      }),
+    });
   }
 
   render() {
