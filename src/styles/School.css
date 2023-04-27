@@ -1,0 +1,39 @@
+.school-name {
+  font-weight: bold;
+  margin-bottom: 0.1rem;
+}
+
+.degree {
+  font-style: italic;
+}
+
+.grad-date {
+  font-weight: bold;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.school-location {
+  font-style: italic;
+  position: absolute;
+  top: 1.2rem;
+  right: 0;
+}
+
+.school {
+  position: relative;
+}
+
+.school-description {
+  list-style-type: square;
+  position: relative;
+  left: 1rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.school-description span {
+  position: relative;
+  left: 1.5rem;
+}
