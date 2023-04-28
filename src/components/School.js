@@ -95,6 +95,10 @@ class School extends Component {
             Edit School
           </div>
         )}
+
+        <div className="deleteSchool" onClick={this.props.deleteSchool}>
+          Delete School
+        </div>
       </div>
     );
   }

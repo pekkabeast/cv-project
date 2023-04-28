@@ -1,0 +1,99 @@
+.skills-header {
+  font-size: 1.2rem;
+  border-bottom: 1px solid black;
+  padding-bottom: 2px;
+  padding-top: 0.6rem;
+}
+
+.skills {
+  position: relative;
+}
+
+.addSkill {
+  opacity: 0;
+  position: absolute;
+  top: 0.1rem;
+  right: 0;
+  background: lightgray;
+  padding: 5px;
+  border-radius: 0.5rem;
+  transition: 0.5s;
+}
+
+.addSkill:hover {
+  outline: 1px solid black;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.skills:hover .addSkill {
+  opacity: 1;
+}
+
+.skill {
+  display: inline-block;
+}
+
+.skillInput {
+  display: block;
+  width: 200px;
+}
+
+.editSkills,
+.saveSkills {
+  opacity: 0;
+  position: absolute;
+  top: 3rem;
+  right: -9rem;
+  background: lightgray;
+  padding: 5px;
+  border-radius: 0.5rem;
+  transition: 0.5s;
+}
+
+.saveSkills {
+  right: -11.2rem;
+}
+
+.editSkills:hover,
+.saveSkills:hover {
+  outline: 1px solid black;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.skills:hover .editSkills,
+.skills:hover .saveSkills {
+  opacity: 1;
+}
+
+.skills-list {
+  display: flex;
+  flex-flow: column wrap;
+  max-height: 70px;
+}
+
+.skill {
+  position: relative;
+}
+
+.deleteSkillWrapper {
+  opacity: 0;
+  position: absolute;
+  top: 0rem;
+  left: -1.5rem;
+  background-color: lightcoral;
+  width: 10px;
+  height: 10px;
+  padding: 4px;
+  border-radius: 0.5rem;
+}
+
+.deleteSkill {
+  width: 10px;
+  height: 10px;
+}
+
+.skill:hover .deleteSkillWrapper {
+  opacity: 1;
+}

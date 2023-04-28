@@ -21,6 +21,7 @@ class Education extends Component {
 
     this.addSchool = this.addSchool.bind(this);
     this.editSchool = this.editSchool.bind(this);
+    this.deleteSchool = this.deleteSchool.bind(this);
   }
 
   addSchool() {
@@ -73,6 +74,15 @@ class Education extends Component {
     });
   }
 
+  deleteSchool(event) {
+    let parent = event.target.parentElement;
+    this.setState({
+      schoolList: this.state.schoolList.filter(
+        (school) => school.id !== parent.id
+      ),
+    });
+  }
+
   render() {
     return (
       <div className="education">
@@ -84,6 +94,7 @@ class Education extends Component {
                 school={school}
                 key={school.id}
                 editSchool={this.editSchool}
+                deleteSchool={this.deleteSchool}
               />
             );
           })}

@@ -39,12 +39,14 @@
 }
 
 .school:hover .editSchool,
-.school:hover .saveSchool {
+.school:hover .saveSchool,
+.school:hover .deleteSchool {
   opacity: 1;
 }
 
 .editSchool,
-.saveSchool {
+.saveSchool,
+.deleteSchool {
   opacity: 0;
   position: absolute;
   top: 0;
@@ -56,7 +58,8 @@
 }
 
 .editSchool:hover,
-.saveSchool:hover {
+.saveSchool:hover,
+.deleteSchool:hover {
   outline: 1px solid black;
   cursor: pointer;
   transition: 0.2s;
@@ -91,4 +94,11 @@
 .schoolDescInput {
   display: block;
   margin-top: 0.5rem;
+}
+
+.deleteSchool {
+  background-color: lightcoral;
+  width: 6rem;
+  left: -10rem;
+  text-align: center;
 }
