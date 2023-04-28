@@ -20,6 +20,7 @@ class Education extends Component {
     };
 
     this.addSchool = this.addSchool.bind(this);
+    this.editSchool = this.editSchool.bind(this);
   }
 
   addSchool() {
@@ -56,13 +57,35 @@ class Education extends Component {
     );
   }
 
+  editSchool(event) {
+    let parent = event.target.parentElement;
+    this.setState({
+      schoolList: this.state.schoolList.map((school) => {
+        if (school.id === parent.id) {
+          school.name = parent.querySelector(".schoolNameInput").value;
+          school.degree = parent.querySelector(".degreeInput").value;
+          school.gradDate = parent.querySelector(".gradDateInput").value;
+          school.location = parent.querySelector(".schoolLocationInput").value;
+          school.description = parent.querySelector(".schoolDescInput").value;
+        }
+        return school;
+      }),
+    });
+  }
+
   render() {
     return (
       <div className="education">
         <h2 className="education-header">Education</h2>
         <div className="education-list">
           {this.state.schoolList.map((school) => {
-            return <School school={school} key={school.id} />;
+            return (
+              <School
+                school={school}
+                key={school.id}
+                editSchool={this.editSchool}
+              />
+            );
           })}
         </div>
         {this.state.schoolList.length < 2 && (
