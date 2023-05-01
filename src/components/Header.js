@@ -1,16 +1,9 @@
-import react, { Component } from "react";
 import "../styles/Header.css";
 import JsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
-class Header extends Component {
-  constructor(props) {
-    super(props);
-
-    this.generatePDF = this.generatePDF.bind(this);
-  }
-
-  generatePDF() {
+const Header = () => {
+  function generatePDF() {
     const input = document.querySelector(".resume");
 
     html2canvas(input).then((canvas) => {
@@ -21,16 +14,14 @@ class Header extends Component {
     });
   }
 
-  render() {
-    return (
-      <div className="header">
-        <h1 className="app-Title">r/Resume Builder</h1>
-        <div className="exportPDF" onClick={this.generatePDF}>
-          Export as PDF
-        </div>
+  return (
+    <div className="header">
+      <h1 className="app-Title">r/Resume Builder</h1>
+      <div className="exportPDF" onClick={generatePDF}>
+        Export as PDF
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Header;

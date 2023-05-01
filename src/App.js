@@ -1,22 +1,15 @@
-import react, { Component } from "react";
 import Header from "./components/Header";
 import Resume from "./components/Resume";
 import "./styles/App.css";
 
-class App extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div className="app">
-        <Header />
-        <Resume />
-      </div>
-    );
-  }
-}
+const App = () => {
+  return (
+    <div className="app">
+      <Header />
+      <Resume />
+    </div>
+  );
+};
 
 export default App;
 

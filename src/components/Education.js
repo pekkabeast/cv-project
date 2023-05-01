@@ -1,67 +1,28 @@
-import react, { Component } from "react";
+import react, { useState } from "react";
 import "../styles/Education.css";
 import School from "./School";
 import uniqid from "uniqid";
 
-class Education extends Component {
-  constructor(props) {
-    super(props);
+const Education = () => {
+  const [schoolList, setSchoolList] = useState([]);
 
-    this.state = {
-      schoolList: [],
-      school: {
-        name: "",
-        degree: "",
-        gradDate: "",
-        location: "",
-        description: "",
-        id: uniqid(),
-      },
-    };
+  const newSchool = {
+    name: "University Name",
+    degree: "Degree",
+    gradDate: "Graduation Month, Year",
+    location: "City,ST",
+    description: "Description",
+    id: uniqid(),
+  };
 
-    this.addSchool = this.addSchool.bind(this);
-    this.editSchool = this.editSchool.bind(this);
-    this.deleteSchool = this.deleteSchool.bind(this);
+  function addSchool() {
+    setSchoolList([...schoolList, newSchool]);
   }
 
-  addSchool() {
-    this.setState(
-      {
-        school: {
-          name: "University Name",
-          degree: "Degree",
-          gradDate: "Graduation Month, Year",
-          location: "City,ST",
-          description: "Description",
-          id: this.state.school.id,
-        },
-      },
-      () => {
-        this.setState(
-          {
-            schoolList: [...this.state.schoolList, this.state.school],
-          },
-          () => {
-            this.setState({
-              school: {
-                name: "",
-                degree: "",
-                gradDate: "",
-                location: "",
-                description: "",
-                id: uniqid(),
-              },
-            });
-          }
-        );
-      }
-    );
-  }
-
-  editSchool(event) {
+  function editSchool(event) {
     let parent = event.target.parentElement;
-    this.setState({
-      schoolList: this.state.schoolList.map((school) => {
+    setSchoolList(
+      schoolList.map((school) => {
         if (school.id === parent.id) {
           school.name = parent.querySelector(".schoolNameInput").value;
           school.degree = parent.querySelector(".degreeInput").value;
@@ -70,43 +31,37 @@ class Education extends Component {
           school.description = parent.querySelector(".schoolDescInput").value;
         }
         return school;
-      }),
-    });
-  }
-
-  deleteSchool(event) {
-    let parent = event.target.parentElement;
-    this.setState({
-      schoolList: this.state.schoolList.filter(
-        (school) => school.id !== parent.id
-      ),
-    });
-  }
-
-  render() {
-    return (
-      <div className="education">
-        <h2 className="education-header">Education</h2>
-        <div className="education-list">
-          {this.state.schoolList.map((school) => {
-            return (
-              <School
-                school={school}
-                key={school.id}
-                editSchool={this.editSchool}
-                deleteSchool={this.deleteSchool}
-              />
-            );
-          })}
-        </div>
-        {this.state.schoolList.length < 2 && (
-          <div className="addSchool" onClick={this.addSchool}>
-            Add School
-          </div>
-        )}
-      </div>
+      })
     );
   }
-}
+
+  function deleteSchool(event) {
+    let parent = event.target.parentElement;
+    setSchoolList(schoolList.filter((school) => school.id !== parent.id));
+  }
+
+  return (
+    <div className="education">
+      <h2 className="education-header">Education</h2>
+      <div className="education-list">
+        {schoolList.map((school) => {
+          return (
+            <School
+              school={school}
+              key={school.id}
+              editSchool={editSchool}
+              deleteSchool={deleteSchool}
+            />
+          );
+        })}
+      </div>
+      {schoolList.length < 2 && (
+        <div className="addSchool" onClick={addSchool}>
+          Add School
+        </div>
+      )}
+    </div>
+  );
+};
 
 export default Education;
